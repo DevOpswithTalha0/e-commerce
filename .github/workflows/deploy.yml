@@ -19,7 +19,7 @@ jobs:
           host: ${{ secrets.EC2_HOST }}
           username: ${{ secrets.EC2_USER }}
           key: ${{ secrets.EC2_SSH_KEY }}
-          source: "."  # ✅ You can change to "dist/*" or relevant build folder
+          source: "." 
           target: "/home/ec2-user/shopcart"
 
       - name: SSH into EC2 and Deploy
