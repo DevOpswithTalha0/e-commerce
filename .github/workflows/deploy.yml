@@ -1,24 +1,28 @@
-name: Deploy to production
+name: Deploy to Production
+
 on:
   push:
     branches:
       - main
+
 jobs:
   deploy:
-    run-on: ubuntu-latest
+    runs-on: ubuntu-latest  # ✅ Fix: corrected "run-on" to "runs-on"
+
     steps:
-      - name: checkout repository
+      - name: Checkout Repository
         uses: actions/checkout@v3
-      - name: deploy to ec2
+
+      - name: Upload Files to EC2
         uses: appleboy/scp-action@v0.1.7
         with:
           host: ${{ secrets.EC2_HOST }}
           username: ${{ secrets.EC2_USER }}
           key: ${{ secrets.EC2_SSH_KEY }}
-          source: "."
+          source: "."  # ✅ You can change to "dist/*" or relevant build folder
           target: "/home/ec2-user/shopcart"
-          
-      - name: SSH into EC2 or Deploy
+
+      - name: SSH into EC2 and Deploy
         uses: appleboy/ssh-action@v0.1.7
         with:
           host: ${{ secrets.EC2_HOST }}
