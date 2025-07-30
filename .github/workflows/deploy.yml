@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest 
 
     steps:
-      - name: Checkout Repository
+      - name: Checkout code
         uses: actions/checkout@v3
 
       - name: Upload Files to EC2
